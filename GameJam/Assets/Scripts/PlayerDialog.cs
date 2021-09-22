@@ -61,6 +61,7 @@ public class PlayerDialog : MonoBehaviour
         if (collision.gameObject.CompareTag("Npc"))
         {
             interactableNpc = collision.gameObject;
+            Debug.Log("lol");
         }
     }
 
