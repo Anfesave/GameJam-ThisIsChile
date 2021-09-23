@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
+	public Image face;
 	public Text nameText;
 	public Text dialogueText;
 
@@ -22,6 +23,8 @@ public class DialogueManager : MonoBehaviour {
 		animator.SetBool("IsOpen", true);
 
 		nameText.text = dialogue.name;
+		face.sprite = dialogue.face;
+
 
 		sentences.Clear();
 

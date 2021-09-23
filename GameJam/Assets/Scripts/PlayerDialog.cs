@@ -15,10 +15,7 @@ public class PlayerDialog : MonoBehaviour
     private bool _isTalking;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-    }
+    void Start() => dialogueManager = FindObjectOfType<DialogueManager>();
 
     // Update is called once per frame
     void Update()
