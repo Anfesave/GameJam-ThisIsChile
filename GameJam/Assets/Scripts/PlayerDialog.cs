@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerDialog : MonoBehaviour
 {
-    //Usar siempre Colliders para marcar zonas donde los npc son interactuables
+    //Usar siempre Colliders como trigger para marcar zonas donde los npc son interactuables
 
     private DialogueManager dialogueManager;
 
@@ -35,6 +35,7 @@ public class PlayerDialog : MonoBehaviour
     private IEnumerator Dialog()
     {
         _isTalking = true;
+        GetComponent<PlayerMovement>().enabled = false;
         interactableNpc.GetComponent<DialogueTrigger>().TriggerDialogue();
                 
         while (true)
@@ -51,6 +52,7 @@ public class PlayerDialog : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 yield return new WaitUntil(() => Input.GetKey(KeyCode.E));
                 dialogueManager.DisplayNextSentence();
+                GetComponent<PlayerMovement>().enabled = true;
                 yield break;
             }
         }
@@ -59,17 +61,12 @@ public class PlayerDialog : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Npc"))
-        {
             interactableNpc = collision.gameObject;
-            Debug.Log("lol");
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Npc"))
-        {
             interactableNpc = null;
-        }
     }
 }
