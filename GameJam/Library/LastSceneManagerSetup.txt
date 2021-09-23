@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/DialogTestScene.unity
+=======
+- path: Assets/Scenes/Surgical.unity
+>>>>>>> a03f08e989521e8e094201ca520073de8dba5eea
   isLoaded: 1
   isActive: 1
   isSubScene: 0
