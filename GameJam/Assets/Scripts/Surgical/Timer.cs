@@ -12,6 +12,11 @@ public class Timer : MonoBehaviour
     public int duration;
     private int remainingDuration;
 
+    public GameObject nurseNpc;
+    public PlayerDialog player;
+    public ChoosePatient patient1;
+    public ChoosePatient patient2;
+
     void Start(){
         Begin(duration);
     }
@@ -33,7 +38,13 @@ public class Timer : MonoBehaviour
     }
 
     private void OnEnd(){
-        //Timer End, Do something
+        player.interactableNpc = nurseNpc;
+        player.Dialog();
+
+        if (Random.value > 0.5f)
+            patient1.ChoosePatientTrigger();
+        else
+            patient1.ChoosePatientTrigger();
         print("End");
     }
 

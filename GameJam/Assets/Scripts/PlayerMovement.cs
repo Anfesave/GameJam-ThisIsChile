@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     //----------------------------------------
     [Header("Components")]
     private Rigidbody2D _rb;
+    private Animator _anim;
 
     [Header("Layer Masks")]
     [SerializeField] private LayerMask _groundLayer;
@@ -40,11 +42,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 _groundRaycastOffset;
     private bool _onGround;
 
-    private void Start() => _rb = GetComponent<Rigidbody2D>();
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         _horizontalDirection = GetInput().x;
+
+        Turn();
+
         if (_canJump) Jump();
     }
 
@@ -77,6 +86,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (Mathf.Abs(_rb.velocity.x) > _maxMoveSpeed)
             _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * _maxMoveSpeed, _rb.velocity.y);
+    }
+
+    private void Turn()
+    {
+        if (_horizontalDirection != Vector2.zero.x)
+        {
+            _anim.SetBool("Walking", true);
+
+            if (_horizontalDirection > 0)
+                transform.localScale = Vector3.one;
+
+            else
+                transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        else
+            _anim.SetBool("Walking", false);
     }
 
     private void ApplyGroundLinearDrag()
