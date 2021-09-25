@@ -9,21 +9,24 @@ public class DialogueManager : MonoBehaviour {
 	public Text nameText;
 	public Text dialogueText;
 
+	
 	public Animator animator;
+	private AudioSource audioSource;
 
 	public Queue<string> sentences;
 
-	// Use this for initialization
-	void Start () {
-		sentences = new Queue<string>();
-	}
+    private void Awake() => audioSource = GetComponent<AudioSource>();
 
-	public void StartDialogue (Dialogue dialogue)
+    // Use this for initialization
+    void Start() => sentences = new Queue<string>();
+
+    public void StartDialogue (Dialogue dialogue)
 	{
 		animator.SetBool("IsOpen", true);
 
 		nameText.text = dialogue.name;
 		face.sprite = dialogue.face;
+		audioSource.clip = dialogue.voice;
 
 
 		sentences.Clear();
@@ -51,6 +54,7 @@ public class DialogueManager : MonoBehaviour {
 
 	IEnumerator TypeSentence (string sentence)
 	{
+		audioSource.Play();
 		dialogueText.text = "";
 		foreach (char letter in sentence.ToCharArray())
 		{
@@ -58,11 +62,9 @@ public class DialogueManager : MonoBehaviour {
 			dialogueText.text += letter;
 			yield return null;
 		}
+		audioSource.Stop();
 	}
 
-	void EndDialogue()
-	{
-		animator.SetBool("IsOpen", false);
-	}
+    void EndDialogue() => animator.SetBool("IsOpen", false);
 
 }

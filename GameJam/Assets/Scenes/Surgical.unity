@@ -2038,7 +2038,7 @@ Canvas:
   m_GameObject: {fileID: 1607631953}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1122498649}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2104,6 +2104,7 @@ MonoBehaviour:
   dialogue:
     face: {fileID: 21300000, guid: 131b5522c6cb2fb4c80160ebefdb213c, type: 3}
     name: Nurse
+    voice: {fileID: 8300000, guid: 78a1bb199200260448a1509f165ad3f6, type: 3}
     sentences:
     - "\xA1Doctor se nos acaba el tiempo!"
     - "Si usted no toma la decisi\xF3n tendr\xE9 que hacer yo"
@@ -2239,7 +2240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -556.2435, y: 79.04443}
+  m_AnchoredPosition: {x: -224, y: 88}
   m_SizeDelta: {x: -1420.001, y: -321.649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778734972

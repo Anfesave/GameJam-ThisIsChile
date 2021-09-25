@@ -307,6 +307,7 @@ MonoBehaviour:
   dialogue:
     face: {fileID: 21300000, guid: 131b5522c6cb2fb4c80160ebefdb213c, type: 3}
     name: Test Npc
+    voice: {fileID: 8300000, guid: 78a1bb199200260448a1509f165ad3f6, type: 3}
     sentences:
     - Hola
     - Soy un npc
