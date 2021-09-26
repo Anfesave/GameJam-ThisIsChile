@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public string nextScene;
     public bool _isNight;
 
-    public GameManager playerPrefab;
+    public GameObject playerPrefab;
 
     private void Awake() => _instance = this;
 

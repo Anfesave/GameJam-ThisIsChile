@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     //----------------------------------------
     [Header("Components")]
     private Rigidbody2D _rb;
-    private Animator _anim;
+    public Animator _anim;
 
     [Header("Layer Masks")]
     [SerializeField] private LayerMask _groundLayer;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _movementAcceleration = 70f;
     [SerializeField] private float _maxMoveSpeed = 12f;
     [SerializeField] private float _groundLinearDrag = 7f;
-    private float _horizontalDirection;
+    public float _horizontalDirection;
     private bool _changingDirection => (_rb.velocity.x > 0f && _horizontalDirection < 0f) || (_rb.velocity.x < 0f && _horizontalDirection > 0f);
 
     [Header("Jump Variables")]

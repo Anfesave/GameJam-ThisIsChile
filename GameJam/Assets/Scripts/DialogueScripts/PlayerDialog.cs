@@ -12,7 +12,18 @@ public class PlayerDialog : MonoBehaviour
     //Npc interactuable en el momento, null de no existir uno
     public GameObject interactableNpc;
 
-    public bool _isTalking;
+    private bool _isTalking;
+
+    public bool isTalking
+    {
+        get { return _isTalking; }
+        set 
+        {
+            _isTalking = value;
+            GetComponent<PlayerMovement>()._anim.SetBool("Walking", false);
+            GetComponent<PlayerMovement>().enabled = !_isTalking;
+        }
+    }
 
     // Start is called before the first frame update
     void Start() => dialogueManager = FindObjectOfType<DialogueManager>();
@@ -21,29 +32,25 @@ public class PlayerDialog : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-        {
             Dialog();
-        }
     }
 
     public void Dialog()
     {
-        if (_isTalking)
+        if (isTalking)
         {
             if (dialogueManager.sentences.Count != 0)
                 dialogueManager.DisplayNextSentence();
             else
             {
                 dialogueManager.DisplayNextSentence();
-                GetComponent<PlayerMovement>().enabled = true;
-                _isTalking = false;
+                isTalking = false;
             }
         }
         else if (interactableNpc != null)
         {
-            GetComponent<PlayerMovement>().enabled = false;
             interactableNpc.GetComponent<DialogueTrigger>().TriggerDialogue();
-            _isTalking = true;
+            isTalking = true;
         }
     }
 
